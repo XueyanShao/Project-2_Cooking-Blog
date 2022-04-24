@@ -2,6 +2,7 @@ require('../models/database');
 const Category = require('../models/Category');
 const Recipe = require('../models/Recipe');
 
+
 // GET Homepage
 exports.homepage = async(req, res) => {
     try {
@@ -34,7 +35,6 @@ exports.exploreCategories = async(req, res) => {
 }
 
 //GET Recipe
-//GET Categories
 exports.exploreRecipe = async(req, res) => {
     try {
         let recipeId = req.params.id;
@@ -49,6 +49,16 @@ exports.exploreRecipe = async(req, res) => {
 //Get Submit Recipe
 exports.submitRecipe = async(req,res) => {
     res.render('submit-recipe', { title: 'Cooking Blog - Submit Recipe'})
+}
+
+//Get Login
+exports.loginPage = async(req,res) => {
+    res.render('login', { title: 'Cooking Blog - Log in'})
+}
+
+//Get Private
+exports.private = async(req,res) => {
+    res.render('private', { title: 'Cooking Blog - Admin'})
 }
 // async function insertDummyCategoryData(){
 

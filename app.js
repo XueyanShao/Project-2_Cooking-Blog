@@ -1,3 +1,4 @@
+// Express SETUP
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 
@@ -16,4 +17,19 @@ app.set('view engine','ejs')
 const routes = require('./server/routes/recipeRoutes.js');
 app.use('/',routes);
 
+const bodyParser = require('body-parser');
+const expressSession = require('express-session') ({
+    secret:'secret',
+    resave: false,
+    saveUninitialized: false
+})
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(expressSession);
+
 app.listen(port, () => console.log(`Listening to port ${port}`));
+
+
+
+

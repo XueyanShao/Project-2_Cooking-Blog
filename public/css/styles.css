@@ -47,4 +47,13 @@ a {
     width:auto;
     object-fit: contain;
 }
-
+.message-box div{
+    display: inline;
+    text-decoration: none;
+}
+.bi {
+  display: inline-block;
+  border-radius: 50px;
+  box-shadow: 0px 0px 2px #6b6b6b;
+  padding: 0.2em 0.3em;
+}
