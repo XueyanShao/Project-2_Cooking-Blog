@@ -1,7 +1,7 @@
 require('../models/database');
 const Category = require('../models/Category');
 const Recipe = require('../models/Recipe');
-
+const User = require('../models/User');
 
 // GET Homepage
 exports.homepage = async(req, res) => {
@@ -12,10 +12,9 @@ exports.homepage = async(req, res) => {
         const thai = await Recipe.find({ 'category': 'Thai'}).limit(limitNumber);
         const american = await Recipe.find({ 'category': 'American'}).limit(limitNumber);
         const chinese = await Recipe.find({ 'category': 'Chinese'}).limit(limitNumber);
-
         const food = {latest, thai, american, chinese};
 
-        res.render('index',{ title:'Cooking Blog - Home', categories, food});
+        res.render('index',{ title:'Cooking Blog - Home', categories, food, name:'Xueyan'});
     } catch(error) {
         res.status(500).send({message: error.message || "Error Occured"});
     }
@@ -52,14 +51,11 @@ exports.submitRecipe = async(req,res) => {
 }
 
 //Get Login
-exports.loginPage = async(req,res) => {
-    res.render('login', { title: 'Cooking Blog - Log in'})
-}
 
-//Get Private
-exports.private = async(req,res) => {
-    res.render('private', { title: 'Cooking Blog - Admin'})
-}
+// exports.loginPage = async(req,res) => {
+//     res.render('login', { title: 'Cooking Blog - Log in'})
+// }
+
 // async function insertDummyCategoryData(){
 
 //     try {

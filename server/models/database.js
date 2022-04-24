@@ -1,15 +1,22 @@
-const mongoose = require('mongoose');
-const passportLocalMongoose = require('passport-local-mongoose');
+// const mongoose = require('mongoose');
+// const passportLocalMongoose = require('passport-local-mongoose');
 
-mongoose.connect(process.env.MONGODB_URI,{ useNewUrlParser: true, useUnifiedTopology: true });
+// //DB Config
+// const db = require('../config/keys').MongoURI;
 
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-    console.log('Connected')
-});
+// //Connect to Mongo
+// mongoose.connect(db,{ useNewUrlParser: true })
+//     .then(() => console.log('Connected'))
+//     .catch(err => console.log(err));
 
-//Models
-require('./Category');
-require('./Recipe');
-require('./Login');
+// // const db = mongoose.connection;
+// // db.on('error', console.error.bind(console, 'connection error:'));
+// // db.once('open', function() {
+// //     console.log('Connected')
+// // });
+
+// //Models
+// require('./Category');
+// require('./Recipe');
+// require('./Login');
+// require('./User');

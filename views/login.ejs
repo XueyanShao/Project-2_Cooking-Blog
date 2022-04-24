@@ -1,5 +1,5 @@
 <div class="px-4 py-5 my-5 text-center">
-    <h1 class="display-5 fw-bold">Log In</h1>
+    <h1 class="display-5 fw-bold title">Log In</h1>
     <div class="col-lg-6 mx-auto">
         <p class="lead">Share your amazing recipes with thousands of foodies on cooking blog here. Log in to get started.</p>
     </div>
@@ -7,32 +7,25 @@
 
 <div class="row justify-content-center">
     <div class="col-8">
-<form action="/login" enctype="multipart/form-data" method="POST">
+<form action="/users/login" enctype="multipart/form-data" method="POST">
   <div class="row g-3">
-    <div class="col-12">
-      <label class="form-label">Username:</label>
-      <input type="text" name="username" class="form-control" />
-      <br>
+    <div class="col-12 field">
+      <label for="email"class="form-label">Email:</label>
+      <input type="email" name="email" class="form-control" placeholder="Enter Email" required />
     </div>
-    <div class="col-12">
-      <label class="form-label">Password:</label>
+    <div class="col-12 field">
+      <label for="password"class="form-label">Password:</label>
       <input type="password" name="password" class="form-control" required />
     </div>
-    <div class="col-12">
-      <button type="submit" class="btn btn-primary mt-4">Log In</button>
+    <div class="col-12 field">
+      <button type="submit" class="btn btn-primary btn-block">Login</button>
+      <br>
+      <p class="lead mt-4">No Account? <a href="/users/register">Register</a> </p>
     </div>
     <label class="col-12" id="error-message"></label>
   </div>
 </form>
 </div>
 </div>
-<script>
-  const urlParams = new URLSearchParams(window.location.search);
-  const info = urlParams.get("info");
 
-  if (info) {
-    const errorMessage = document.getElementById("error-message");
-    errorMessage.innerText = info;
-    errorMessage.style.display = "block";
-  }
-</script>
+

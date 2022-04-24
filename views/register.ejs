@@ -1,0 +1,38 @@
+<div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold title">Register</h1>
+    <div class="col-lg-6 mx-auto">
+        <p class="lead">Share your amazing recipes with thousands of foodies on cooking blog here. Log in to get started.</p>
+        <%- include ('./partials/messages.ejs') %>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-8">
+<form action="/users/register" enctype="multipart/form-data" method="POST">
+  <div class="row g-3">
+    <div class="col-12 field">
+      <label for="name" class="form-label">Username:</label>
+      <input type="name" name="name" class="form-control" placeholder="Enter Name" required/>
+    </div>
+    <div class="col-12 field">
+      <label for="email"class="form-label">Email:</label>
+      <input type="email" name="email" class="form-control" placeholder="Enter Email" required />
+    </div>
+    <div class="col-12 field">
+      <label for="password"class="form-label">Password:</label>
+      <input type="password" name="password" class="form-control" required />
+    </div>
+    <div class="col-12 field">
+      <label for="password2"class="form-label">Confirm Password:</label>
+      <input type="password" name="password2" class="form-control" required />
+    </div>
+    <div class="col-12 field">
+      <button type="submit" class="btn btn-primary btn-block">Register</button>
+      <br>
+      <p class="lead mt-4">Have an Account? <a href="/users/login">Login</a> </p>
+    </div>
+    <label class="col-12" id="error-message"></label>
+  </div>
+</form>
+</div>
+</div>
