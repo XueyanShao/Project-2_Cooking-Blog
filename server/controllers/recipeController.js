@@ -1,7 +1,7 @@
 require('../models/database');
 const Category = require('../models/Category');
 const Recipe = require('../models/Recipe');
-const User = require('../models/User');
+
 
 // GET Homepage
 exports.homepage = async(req, res) => {

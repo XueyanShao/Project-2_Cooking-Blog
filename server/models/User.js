@@ -1,10 +1,5 @@
 const mongoose = require('mongoose');
-// const express = require('express');
-// const app = express();
-// const passportLocalMongoose = require('passport-local-mongoose');
-// const passport = require('passport');
-// app.use(passport.initialize());
-// app.use(passport.session());
+
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -17,6 +12,7 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
+        minlength: 6,
         required: true
     },
     date: {

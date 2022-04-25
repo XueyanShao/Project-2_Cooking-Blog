@@ -2,7 +2,10 @@
     <h1 class="display-5 fw-bold title">Log In</h1>
     <div class="col-lg-6 mx-auto">
         <p class="lead">Share your amazing recipes with thousands of foodies on cooking blog here. Log in to get started.</p>
-    </div>
+      <% if (messages) { %>
+        <p><%= messages.error %></p>
+        <% } %>
+      </div>
 </div>
 
 <div class="row justify-content-center">
