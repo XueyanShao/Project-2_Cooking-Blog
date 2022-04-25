@@ -18,43 +18,10 @@ const {
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-const User = require('../models/User');
 
 
-// Login Page
-router.get('/login', checkNotAuthenticated, (req, res) => res.render('login'));
 
-// Register Page
-router.get('/register', checkNotAuthenticated, (req, res) => res.render('register'));
 
-router.post('/login', checkNotAuthenticated, passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/login',
-    failureflash: true
-}))
-router.post('/register', checkNotAuthenticated, async (req,res) => {
-    const userFound = await User.findOne({email: req.body.email})
-
-    if(userFound) {
-        req.flash('error','User with that email already exists');
-        res.redirect('/register');
-    } else {
-        try {
-            const hashedPassword = await bcrypt.hash(req.body.password,10)
-            const user = new User({
-                name: req.body.name,
-                email: req.body.email,
-                password: hashedPassword
-            });
-            await user.save();
-            res.redirect('/login');
-        }catch(error) {
-            console.log(error)
-            res.redirect('/register');
-        }
-    }
-}
-)
 // // Register Handle
 // router.post('/register', (req, res) => {
 //     var userDetails = new User ({

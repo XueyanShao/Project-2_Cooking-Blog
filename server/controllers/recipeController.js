@@ -1,6 +1,8 @@
 require('../models/database');
 const Category = require('../models/Category');
 const Recipe = require('../models/Recipe');
+const User = require('../models/User');
+
 
 
 // GET Homepage
@@ -49,6 +51,9 @@ exports.exploreRecipe = async(req, res) => {
 exports.submitRecipe = async(req,res) => {
     res.render('submit-recipe', { title: 'Cooking Blog - Submit Recipe'})
 }
+
+
+
 
 //Get Login
 

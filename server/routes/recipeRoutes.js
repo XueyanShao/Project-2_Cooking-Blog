@@ -7,7 +7,7 @@ const {
 } = require('../config/auth');
 
 // App Routes
-router.get('/',checkAuthenticated, recipeController.homepage);
+router.get('/',recipeController.homepage);
 router.get('/categories',recipeController.exploreCategories);
 router.get('/recipe/:id',recipeController.exploreRecipe);
 router.get('/submit-recipe',recipeController.submitRecipe);
