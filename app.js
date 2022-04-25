@@ -11,13 +11,14 @@ const methodOverride = require('method-override');
 const bcrypt = require('bcryptjs');
 const User = require('./server/models/User');
 const bodyParser = require("body-parser")
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 const {
     checkAuthenticated,
     checkNotAuthenticated
 } = require('./server/config/auth');
 
-// app.use(bodyParser.json());
+
 
 app.use(express.json())
 app.use(flash());
@@ -62,6 +63,8 @@ mongoose.connect(db,{ useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Connected'))
     .catch(err => console.log(err));
 
+var database = mongoose.connection;
+
 app.use(express.urlencoded( { extended: true } ));
 app.use(express.static('public'));
 app.use(expressLayouts);
@@ -91,34 +94,49 @@ app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
     failureRedirect: '/login',
     failureFlash: true
 }))
-app.post('/register', checkNotAuthenticated, async (req,res) => {
-    const userFound = await User.findOne({email: req.body.email})
+// app.post('/register', checkNotAuthenticated, async (req,res) => {
+//     const userFound = await User.findOne({email: req.body.email})
 
-    if(userFound) {
-        req.flash('error','User with that email already exists');
-        res.redirect('/register');
-    } else {
-        try {
-            const hashedPassword = await bcrypt.hash(req.body.password,10)
-            const user = new User({
-                name: req.body.name,
-                email: req.body.email,
-                password: hashedPassword
-            });
-            await user.save();
-            res.redirect('/login');
-        }catch(error) {
-            console.log(error)
-            res.redirect('/register');
-        }
-    }
-}
-)
+//     if(userFound) {
+//         req.flash('error','User with that email already exists');
+//         res.redirect('/register');
+//     } else {
+//         try {
+//             // const hashedPassword = await bcrypt.hash(req.body.password,10)
+//             const user = new User({
+//                 name: req.body.name,
+//                 email: req.body.email,
+//                 password: req.body.password
+//             });
+//             await user.save();
+//             res.redirect('/login');
+//         }catch(error) {
+//             console.log(error)
+//             res.redirect('/register');
+//         }
+//     }
+// }
+// )
+app.post('/register', function(req,res){
+    var name = req.body.name;
+    var email = req.body.email;
+    var pass = req.body.password;
+  
+    var user = new User({
+        "name": name,
+        "email":email,
+        "password":pass
+    })
+database.collection('users').insertOne(user,function(err, collection){
+        if (err) throw err;
+        console.log("Record inserted Successfully");
+              
+    });
+          
+    return res.redirect('/login');
+})
 
 
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(expressSession);
 
 
 app.listen(port, () => console.log(`Listening to port ${port}`));
